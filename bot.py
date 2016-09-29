@@ -1,7 +1,6 @@
 from telegram.ext import Updater
 
-def run_bot():
-    updater = Updater("269779371:AAGAKo2IhxvWeDpR2wUKSDzo_VO43BzMpyE")
+def run_bot()
     
     updater.start_polling()
     updater.idle()
