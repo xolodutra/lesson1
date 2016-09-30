@@ -1,4 +1,8 @@
-answers = {"привет": "И тебе привет!", "как дела?": "Лучше всех", "пока": "Увидимся"}
+answers = {
+    "привет": "И тебе привет!", 
+    "как дела?": "Лучше всех", 
+    "пока": "Увидимся"
+}
 
 def get_answer(question, answers):
     return answers.get(question)
@@ -18,9 +22,3 @@ def ask_user(answer):
 
 if __name__ == "__main__":
     ask_user(answers)
-
-
-# new_answer = get_answer(answer, "привет")
-# # new_answer = new_answer[0:-1] - косячный вариант, работает только когда последний символ - знак припинания 
-# new_answer = new_answer.strip().lower()
-# print(new_answer)
