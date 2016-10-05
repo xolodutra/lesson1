@@ -1,5 +1,6 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from answers import get_answer, answers
+from calculator import calculate
 
 def start(bot, update):
      print("Вызван /start")
@@ -11,7 +12,6 @@ def count_word(bot, update):
     msg = len(msg.split(' ')) - 1
     text_count = 'Введено {} слов'.format(msg)
     bot.sendMessage(update.message.chat_id, text=text_count)
-
 
 
 def talk_to_my(bot, update):
@@ -36,7 +36,7 @@ def run_bot():
 
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("calculat", calculat))
+    dp.add_handler(CommandHandler("calculat", calculate))
     dp.add_handler(CommandHandler("count", count_word))
     dp.add_handler(MessageHandler([Filters.text], talk_to_my))
 
