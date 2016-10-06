@@ -23,6 +23,7 @@ def calculate():
     else:
         print('вы забыли знак равно')
 
+
 if __name__ == '__main__':
     calculate()
 
