@@ -23,13 +23,6 @@ def talk_to_my(bot, update):
         text = get_answer(update.message.text, answers)
         bot.sendMessage(update.message.chat_id, text=text)
 
-# def talk_to_me(bot, update):
-#    print("Пришло сообщение: " + update.message.text)
-#    user_text = update.message.text
-#    if "=" in user_text:
-#        bot.sendMessage(update.message.chat_id, text = solver(user_text))
-#    else:    
-#        bot.sendMessage(update.message.chat_id, text = answer.answer(user_text))
 
 def run_bot():
     updater = Updater("269779371:AAGAKo2IhxvWeDpR2wUKSDzo_VO43BzMpyE")
