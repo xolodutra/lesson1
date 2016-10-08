@@ -1,29 +1,25 @@
-def calculate():
-    task = input('Введите задачу:__')
-    if '=' in task:
-        repl_task = task.replace('=', '')
+def calculate(user_task):
+    if '=' in user_task:
+        repl_task = user_task.replace('=', '')
         if '+' in repl_task:
             numbers = repl_task.split("+")
             x, y = numbers
-            print(str(int(x)+int(y)))
+            return (str(int(x)+int(y)))
         elif '-' in repl_task:
             numbers = repl_task.split("-")
             i, j = numbers
-            print(str(int(i)-int(j)))
+            return (str(int(i)-int(j)))
         elif '*' in repl_task:
             numbers = repl_task.split("*")
             a, b = numbers
-            print(str(int(a)*int(b)))
+            return (str(int(a)*int(b)))
         elif '/' in repl_task:
             numbers = repl_task.split("/")
             o, v = numbers
-            print(str(int(o)/int(v)))
-        else:
-            print('пока')
+            return (str(int(o)/int(v)))
     else:
-        print('вы забыли знак равно')
+        return 'вы забыли знак равно'
 
 
 if __name__ == '__main__':
     calculate()
-
