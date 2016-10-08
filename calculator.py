@@ -1,4 +1,7 @@
 def calculate(user_task):
+    user_task = user_task.replace('/calc', '')
+
+
     if '=' in user_task:
         repl_task = user_task.replace('=', '')
         if '+' in repl_task:

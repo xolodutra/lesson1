@@ -10,7 +10,7 @@ def start(bot, update):
 # Ввод команды /calculat вызывает :
 def solver(bot, update):
     print("Кто-то хочет посчитать %s" % update.message.text)
-    text = calculate("3+4=")
+    text = calculate(update.message.text)
     bot.sendMessage(update.message.chat_id, text=text)
 
 # Ввод команды /count вызывает:
@@ -33,7 +33,7 @@ def run_bot():
 
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("calculat", solver))
+    dp.add_handler(CommandHandler("calc", solver))
     dp.add_handler(CommandHandler("count", count_word))
     dp.add_handler(MessageHandler([Filters.text], talk_to_my))
 
