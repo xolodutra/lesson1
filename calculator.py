@@ -17,27 +17,36 @@ word_of_simbol = {
 }
 
 def get_change(user_task, word_of_simbol):
+
+# очищаем сообщение от лишних слов
     user_task = user_task.replace("/calc", '')
     user_task = user_task.replace("на", '')
     user_task = user_task.replace("будет", '')
 
+# пересобираем слова из сообщения в новую строку, которую передадим калькулятору
     split_task = user_task.split(" ")
     list_task = []
     for word in split_task:
         if word:
             list_task.append(word_of_simbol.get(word))
     str_task = "".join(list_task)
+    print(str_task)
 
     return int_calculate(str_task)
 
 
 def calculate(user_task):
-        if '=' in user_task:
-            return int_calculate(user_task)
-        elif "сколько" in user_task:
-            return get_change(user_task, word_of_simbol)
 
+    if '=' in user_task:
+        return int_calculate(user_task)
+        # print(user_task)
+    elif "сколько" in user_task:
+        return get_change(user_task, word_of_simbol)
+    else:
+        return "Вы не уточнили, что именно нужно посчитать"
+# добавляем исключение, если пользователь ввёл только /calc 
 
+#  здесь считаем 
 def int_calculate(user_task):
     user_task = user_task.replace('/calc', '')
 
@@ -64,4 +73,4 @@ def int_calculate(user_task):
 
 
 if __name__ == '__main__':
-   calculate("/calc сколько будет три умножить на два")
+   calculate("какой-то пример")

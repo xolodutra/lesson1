@@ -5,7 +5,10 @@ answers = {
 }
 
 def get_answer(question, answers):
-    return answers.get(question)
+    if question in answers:
+        return answers.get(question)
+    else:
+        return "я пока не знаю, что вам ответить. Когда-нибудь я научусь"
 
 def ask_user(answer):
     try:
