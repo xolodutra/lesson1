@@ -1,6 +1,9 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from answers import get_answer, answers
 from calculator import calculate
+import ephem
+
+# Спрашиваем у бота о ближайшем полнолунии
 
 # Ввод команды /start в телеграм вызывает:
 def start(bot, update):
