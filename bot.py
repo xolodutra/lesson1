@@ -1,9 +1,16 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from answers import get_answer, answers
 from calculator import calculate
+from foolmoon import fool_moon_metr
 import ephem
 
 # Спрашиваем у бота о ближайшем полнолунии
+def count_fool_moon(bot, update):
+    print("Кто-то спрашивает,  %s" % update.message.text)
+    
+    bot.sendMessage(update.message.chat_id, text=text)
+
+
 
 # Ввод команды /start в телеграм вызывает:
 def start(bot, update):
