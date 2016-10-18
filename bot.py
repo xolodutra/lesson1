@@ -4,13 +4,6 @@ from calculator import calculate
 from foolmoon import fool_moon_metr
 import ephem
 
-# Спрашиваем у бота о ближайшем полнолунии
-def count_fool_moon(bot, update):
-    print("Кто-то спрашивает,  %s" % update.message.text)
-    
-    bot.sendMessage(update.message.chat_id, text=text)
-
-
 
 # Ввод команды /start в телеграм вызывает:
 def start(bot, update):
@@ -33,7 +26,10 @@ def count_word(bot, update):
 # Ввод слов из списка вызывает: 
 def talk_to_my(bot, update):
     print("Пришло сообщение: %s" % update.message.text)
-    text = get_answer(update.message.text, answers)
+    if update.message.text in answers:
+        text = get_answer(update.message.text, answers)
+    else:
+        text = fool_moon_metr(update.message.text)
     bot.sendMessage(update.message.chat_id, text=text)
 
 # Функция управления общением с ботом
@@ -46,6 +42,7 @@ def run_bot():
     dp.add_handler(CommandHandler("calc", solver))
     dp.add_handler(CommandHandler("count", count_word))
     dp.add_handler(MessageHandler([Filters.text], talk_to_my))
+
 
 
     updater.start_polling()
