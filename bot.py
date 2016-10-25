@@ -2,6 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from answers import get_answer, answers
 from calculator import calculate
 from foolmoon import fool_moon_metr
+from log_bot import output_reader
 import ephem
 
 
@@ -27,6 +28,7 @@ def count_word(bot, update):
 def talk_to_my(bot, update):
     print("Пришло сообщение: %s" % update.message.text)
     if update.message.text in answers:
+        print(update.message)
         text = get_answer(update.message.text, answers)
     else:
         text = fool_moon_metr(update.message.text)
