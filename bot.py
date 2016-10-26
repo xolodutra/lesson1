@@ -6,6 +6,12 @@ from log_bot import output_reader
 import ephem
 
 
+def log_writer(bot, update):
+    chat_out = update.message
+    text = output_reader(chat_out, output_log)
+    bot.sendMessage(text=text)
+
+
 # Ввод команды /start в телеграм вызывает:
 def start(bot, update):
      print("Вызван /start")
@@ -28,7 +34,6 @@ def count_word(bot, update):
 def talk_to_my(bot, update):
     print("Пришло сообщение: %s" % update.message.text)
     if update.message.text in answers:
-        print(update.message)
         text = get_answer(update.message.text, answers)
     else:
         text = fool_moon_metr(update.message.text)
@@ -44,6 +49,7 @@ def run_bot():
     dp.add_handler(CommandHandler("calc", solver))
     dp.add_handler(CommandHandler("count", count_word))
     dp.add_handler(MessageHandler([Filters.text], talk_to_my))
+    dp.add_handler(MessageHandler([Filters.text], log_writer))
 
 
 

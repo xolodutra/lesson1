@@ -1,10 +1,10 @@
 from datetime import datetime
 
-chat_out = update.message
+
 
 output_log =  ['first_name', 'text' ]
 
-def output_reader():
+def output_reader(output_log, chat_out):
     # начинаем с добавления текущей даты
     dt_now = datetime.now()
     dt_now = dt_now.strftime('%d.%m.%Y  %H:%m')
@@ -27,5 +27,5 @@ def output_reader():
 
 
 if __name__ == "__main__":
-    output_reader()
+    output_reader(output_log, chat_out)
 
