@@ -5,7 +5,7 @@ from foolmoon import fool_moon_metr
 from log_bot import output_reader
 import ephem
 
-
+# Вот функция, которая передаёт данные в функцию log_bot
 def log_writer(bot, update):
     output_log =  ['first_name', 'text' ]
     text = output_reader(update.message, output_log)
