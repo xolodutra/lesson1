@@ -7,9 +7,10 @@ import ephem
 
 
 def log_writer(bot, update):
-    chat_out = update.message
-    text = output_reader(chat_out, output_log)
-    bot.sendMessage(text=text)
+    output_log =  ['first_name', 'text' ]
+    text = output_reader(update.message, output_log)
+    print("что-то начало получаться?")
+    bot.sendMessage(update.message.chat_id, text=text)
 
 
 # Ввод команды /start в телеграм вызывает:
@@ -33,6 +34,7 @@ def count_word(bot, update):
 # Ввод слов из списка вызывает: 
 def talk_to_my(bot, update):
     print("Пришло сообщение: %s" % update.message.text)
+
     if update.message.text in answers:
         text = get_answer(update.message.text, answers)
     else:
@@ -49,8 +51,6 @@ def run_bot():
     dp.add_handler(CommandHandler("calc", solver))
     dp.add_handler(CommandHandler("count", count_word))
     dp.add_handler(MessageHandler([Filters.text], talk_to_my))
-    dp.add_handler(MessageHandler([Filters.text], log_writer))
-
 
 
     updater.start_polling()

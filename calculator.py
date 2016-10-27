@@ -22,6 +22,7 @@ def get_change(user_task, word_of_simbol):
     user_task = user_task.replace("/calc", '')
     user_task = user_task.replace("на", '')
     user_task = user_task.replace("будет", '')
+    user_task = user_task.replace("?", '')
 
 # пересобираем слова из сообщения в новую строку, которую передадим калькулятору
     split_task = user_task.split(" ")

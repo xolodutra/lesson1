@@ -1,10 +1,10 @@
 from datetime import datetime
 
 
-
-output_log =  ['first_name', 'text' ]
-
 def output_reader(output_log, chat_out):
+    chat_out = {}
+    # output_log =  ['first_name', 'text' ]
+    output_log = []
     # начинаем с добавления текущей даты
     dt_now = datetime.now()
     dt_now = dt_now.strftime('%d.%m.%Y  %H:%m')
@@ -19,13 +19,14 @@ def output_reader(output_log, chat_out):
         i = i + 1
         if i >= len(output_log):
             break
-    print(out_list)
-    out_str = '\n{}'. format(';-----'.join(out_list) )
+    out_str = '\n{}'. format('\t'.join(out_list) )
+
     with open('log_bot.txt', 'a', encoding='utf-8')  as logfile:
         logfile.write(out_str)
 
 
-
 if __name__ == "__main__":
-    output_reader(output_log, chat_out)
+    output_reader("прпрпрп", "прпрпрп")
+
+
 
