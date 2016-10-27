@@ -15,8 +15,16 @@ def log_writer(bot, update):
 
 # Ввод команды /start в телеграм вызывает:
 def start(bot, update):
-     print("Вызван /start")
-     bot.sendMessage(update.message.chat_id, text='Ну здорова, коль не шутишь!')
+     from_user = "Вызван /start"
+     to_user = "Ну здорова, коль не шутишь!"
+     print(from_user)
+     bot.sendMessage(update.message.chat_id, text=to_user)
+     log_writer(from_user, to_user, update.message)
+
+# def start(bot, update):
+#      print("Вызван /start")
+#      print(update.message)
+#      bot.sendMessage(update.message.chat_id, text='Ну здорова, коль не шутишь!')
 
 # Ввод команды /calculat вызывает :
 def solver(bot, update):
