@@ -1,4 +1,5 @@
 from datetime import datetime
+import csv
 
 def output_reader(from_user, to_user, username ):
 
@@ -12,7 +13,10 @@ def output_reader(from_user, to_user, username ):
     out_list.append(str(to_user))
 
     out_str = '\n{}'. format('\t'.join(out_list))
-    with open('log_bot.txt', 'a', encoding='utf-8')  as logfile:
+    with open('log_bot.csv', 'w', encoding='utf-8')  as logfile:
+        fields = [date, time, username, content]
+        writer = csv.DictReader(logfile, fields, delimiter =';' )
+        
         logfile.write(out_str)
 
 if __name__ == "__main__":
