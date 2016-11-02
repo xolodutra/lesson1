@@ -1,2 +1,5 @@
 passwords.txt
 __pycache__/
+export.csv
+log_bot.csv
+pre_log_bot.txt
