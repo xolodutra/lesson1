@@ -16,6 +16,7 @@ from log_bot import output_reader
 import ephem
 import csv
 from datetime import datetime
+import os
 
 # Эта функция собирает данные из выдачи телеграма и 
 # просто записывает их построчно в текстовый файл
@@ -25,43 +26,22 @@ def log_writer(from_user, to_user, username):
 
 # Эта функция собирает из выдачи телеграма 
 def csv_writer(telegram_out):
-# сначала собираем словарь из запрашиваемых значений, 
-# а этот словарь отправляем в текстовый файл.
-# Ok, собираем инфу из выдачи телеграма:
-# Можн обыло конечно сразу начать собирать словарик, но я потом забуду как я это сделал. 
-# а так хотя бы прозачно, что откуда берётся
-    dt_now = datetime.now()
-    dt_now = dt_now.strftime('%d.%m.%Y')
-    tm_now = datetime.now()
-    tm_now = tm_now.strftime('%H:%m')
-    username_out = telegram_out.chat.username
-    content_out = telegram_out.text
+    # print(telegram_out, datetime.now())
+    user_info = {
+        'content': telegram_out.text,
+        'date': datetime.now().strftime('%d.%m.%Y'),
+        'time': datetime.now().strftime('%H:%M'),
+        'username': telegram_out.chat.username,
+    }
 
+    with open('export.csv', 'a', encoding='utf-8') as f:
+        fields = ['date', 'time', 'username', 'content']
+        writer = csv.DictWriter(f, fields, delimiter=';')
+        log_size = os.path.getsize('export.csv')
+        if log_size == 0:
+            writer.writeheader()
+        writer.writerow(user_info)
 
-# Полученую инфу собираем в словарь user_info
-
-    user_info = {'content': '', 'date': '', 'time': '', 'username': ''}
-    user_info['content'] = content_out
-    user_info['date'] = dt_now
-    user_info['time'] = tm_now
-    user_info['username'] = username_out
-    print(user_info)
-
-    with open('pre_log_bot.txt', 'a', encoding='utf-8')  as logfile:
-        logfile.write(user_info)
-
-# Собранный файл возвращаем сюда и читаем построчно
-
-    with open('pre_log_bot.txt', 'r', encoding='utf-8') as pre_log:
-        content_pre_log = pre_log.read()
-
-    # with open('export.csv', 'w', encoding='utf-8') as f:
-    #     # тут заменим поля на те, что нам нужны
-    #     fields = ['date', 'time', 'username', 'content']
-    #     writer = csv.DictWriter(f, fields, delimiter=';')
-    #     writer.writeheader()
-    #     for user in content_pre_log:
-    #         writer.writerow(user)
 
 # Ввод команды /start в телеграм вызывает:
 def start(bot, update):
@@ -82,6 +62,7 @@ def solver(bot, update):
     print("Кто-то хочет посчитать %s" % update.message.text)
     text = calculate(update.message.text)
     bot.sendMessage(update.message.chat_id, text=text)
+    csv_writer(update.message)
 
 # Ввод команды /count вызывает:
 def count_word(bot, update):
@@ -89,6 +70,7 @@ def count_word(bot, update):
     msg = len(msg.split(' ')) - 1
     text_count = 'Введено {} слов'.format(msg)
     bot.sendMessage(update.message.chat_id, text=text_count)
+    csv_writer(update.message)
     try:
         log_writer(msg, text_count, update.message.chat.username)
     except Exception as e:
@@ -104,6 +86,7 @@ def talk_to_my(bot, update):
         text = fool_moon_metr(update.message.text)
         log_writer(update.message.text, text ,update.message.chat.username)
     bot.sendMessage(update.message.chat_id, text=text)
+    csv_writer(update.message)
 
 # Функция управления общением с ботом
 def run_bot():

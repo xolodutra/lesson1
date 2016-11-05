@@ -4,7 +4,7 @@ def output_reader(from_user, to_user, username ):
 
     # начинаем с добавления текущей даты
     dt_now = datetime.now()
-    dt_now = dt_now.strftime('%d.%m.%Y  %H:%m')
+    dt_now = dt_now.strftime('%d.%m.%Y  %H:%M')
     out_list = [dt_now]
 
     out_list.append(str(username))
