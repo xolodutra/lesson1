@@ -111,7 +111,7 @@ def talk_to_my(bot, update):
     if update.message.text in answers:
         text = get_answer(update.message.text, answers)
 
-    else:
+    elif "когда" in update.message.text:
         text = fool_moon_metr(update.message.text)
 
     bot.sendMessage(update.message.chat_id, text=text)
