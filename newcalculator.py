@@ -21,11 +21,11 @@ def calculator(string):
     return result
 
 
-def precalculator(part):   
-    if type(part) is str:       
+def precalculator(part):
+    if type(part) is str:
         if "*" in part:
             result = 1
-            for subpart  in part.split('*'):
+            for subpart in part.split('*'):
                 result *= precalculator(subpart)
             return result
 
@@ -45,8 +45,8 @@ def precalculator(part):
 
         return part[0] - sum(part[1:])
 
-
     return part
+
 
 if __name__ == '__main__':
     print(calculator('3/ 2 + 10 + 2 * 3 * 2.5 - 4 + 1/2'))
@@ -54,4 +54,3 @@ if __name__ == '__main__':
     print(calculator('2*  87 * 90 + 3/0'))
 
     # print(precalculator([10, "6 / 2" ,4]))
-    

@@ -20,6 +20,10 @@ from datetime import datetime
 import os
 
 
+def name_searcher(fff):
+    print(" ")
+
+
 def help(bot, update):
     from_user = "Вызван /help"
     to_user = """
@@ -113,6 +117,9 @@ def talk_to_my(bot, update):
 
     elif "когда" in update.message.text:
         text = fool_moon_metr(update.message.text)
+
+    elif "имена" in update.message.text:
+        text = name_searcher(update.message.text)
 
     bot.sendMessage(update.message.chat_id, text=text)
 
