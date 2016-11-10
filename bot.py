@@ -13,15 +13,12 @@ from answers import get_answer, answers
 from calculator import calculate
 from foolmoon import fool_moon_metr
 from log_bot import output_reader
+from namesearcher import name_searcher
 
 # Импортируем библиотеки
 import csv
 from datetime import datetime
 import os
-
-
-def name_searcher(fff):
-    print(" ")
 
 
 def help(bot, update):
@@ -46,6 +43,11 @@ def help(bot, update):
     """
     print(from_user)
     bot.sendMessage(update.message.chat_id, text=to_user)
+
+
+def name_searcher_in_bot(user_input):
+    user_input_ex = user_input
+    return name_searcher(user_input_ex)
 
 
 # Эта функция собирает данные из выдачи телеграма и
@@ -119,7 +121,8 @@ def talk_to_my(bot, update):
         text = fool_moon_metr(update.message.text)
 
     elif "имена" in update.message.text:
-        text = name_searcher(update.message.text)
+        print("name_searcher работает")
+        text = name_searcher_in_bot(update.message.text)
 
     bot.sendMessage(update.message.chat_id, text=text)
 

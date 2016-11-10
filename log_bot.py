@@ -1,6 +1,7 @@
 from datetime import datetime
 
-def output_reader(from_user, to_user, username ):
+
+def output_reader(from_user, to_user, username):
 
     # начинаем с добавления текущей даты
     dt_now = datetime.now()
@@ -12,7 +13,7 @@ def output_reader(from_user, to_user, username ):
     out_list.append(str(to_user))
 
     out_str = '\n{}'. format('\t'.join(out_list))
-    with open('log_bot.txt', 'a', encoding='utf-8')  as logfile:
+    with open('log_bot.txt', 'a', encoding='utf-8') as logfile:
         logfile.write(out_str)
 
 if __name__ == "__main__":
