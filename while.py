@@ -8,4 +8,3 @@ while item < len(list1):
     if names == 'Валера':
         print("Привет, Валера")
         break
-        #list1.pop([item])
